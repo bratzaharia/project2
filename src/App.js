@@ -1,6 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 
+
+// modifica in clasa
 function App() {
   return (
     <div className="App">
