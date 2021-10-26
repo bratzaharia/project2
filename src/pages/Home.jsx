@@ -1,16 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import Layout from './../layout/Layout'
+
 function Home(props) {
   console.log(props);
-  
+
   return(
-    <div>
+    <Layout>
       <div>
-      Home
+        Home
       </div>
-      <Link to="/login">Login</Link>
-    </div>
+      <Link to="/login">
+        Login
+      </Link>
+    </Layout>
   )
 }
 
