@@ -1,9 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function Home() {
+function Home(props) {
+  console.log(props);
+  
   return(
     <div>
+      <div>
       Home
+      </div>
+      <Link to="/login">Login</Link>
     </div>
   )
 }
