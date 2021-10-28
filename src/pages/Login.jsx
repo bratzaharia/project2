@@ -5,7 +5,9 @@ function Login() {
   return(
     <div>
       Login
-      <Link to="/">Home</Link>
+      <Link to="/" >
+        <button type="button" className="btn btn-outline-dark">Dark</button>
+      </Link>
 
     </div>
   )

@@ -1,21 +1,60 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import Layout from './../layout/Layout'
+import HomeCategory from '../components/HomeCategory'
+import products from '../utils/products.json'
 
-function Home(props) {
-  console.log(props);
+class Home extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      categories: [],
+      categoryNames: [],
+    };
+  }
 
-  return(
-    <Layout>
-      <div>
-        Home
-      </div>
-      <Link to="/login">
-        Login
-      </Link>
-    </Layout>
-  )
+
+  componentDidMount() {
+    // nu avem fetch().then().then() in rest e la fel
+    const categories = Object.values(products);
+    const categoryNames = Object.keys(products);
+    console.log(categories)
+    this.setState({
+      categories,
+      categoryNames
+    })
+  }
+
+  render() {
+    console.log(this.state.categories)
+    console.log(this.state.categoryNames)
+    return (
+      <Layout>
+        <h1 className="h1 text-center text-primary w-50 py-5">
+          Home
+      </h1>
+
+        <div className="container-fluid">
+          <div className="row">
+            {
+              this.state.categories.map((category, index) => {
+                return (
+                  <HomeCategory
+                    key={index}
+                    image={category.image}
+                    title={category.name}
+                    description={category.description}
+                    routeName={ this.state.categoryNames[index] }
+                  />
+                )
+              })
+            }
+
+          </div>
+        </div>
+      </Layout>
+    )
+  }
 }
 
 export default Home;
