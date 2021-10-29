@@ -1,14 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Login() {
+function Login(props) {
+  console.log(props)
+  const { signInWithGoogle, history } = props;
+
+  function handleButtonClick() {
+    signInWithGoogle();
+    history.push('/')
+  }
+
   return(
     <div>
-      Login
-      <Link to="/" >
-        <button type="button" className="btn btn-outline-dark">Dark</button>
-      </Link>
-
+        <button onClick={handleButtonClick} type="button" className="btn btn-outline-dark">Login</button>
     </div>
   )
 }

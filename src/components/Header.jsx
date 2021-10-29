@@ -4,20 +4,32 @@ import { ReactComponent as ShoppingCart } from './../assets/icons/shopping-cart.
 
 import './Header.css'
 
-function Header() {
+function Header(props) {
+  const { signOut, user } = props;
+  console.log(props)
   return (
     <div className="d-flex justify-content-between align-items-center">
       <Link to="/">
         <img src={Logo} className="eshop-logo" alt="logo"/>
       </Link>
       <div>
-        <Link to="/login">
-          <button type="button" className="btn btn-outline-primary">Login</button>
-        </Link>
+  
+        {
+          user 
+            ? <>
+                <p>{user.displayName}</p>
+                <button onClick={signOut} className="btn btn-outline-primary">Sign out</button>
+              </>
+            : <Link to="/login">
+                <button type="button" className="btn btn-outline-primary">Login</button>
+              </Link>
+        }
+
         <Link to='/shoppingcart'>
-          <ShoppingCart/>
+          <ShoppingCart className="ml-2"/>
         </Link>
       </div>
+      
     </div>
   )
 }

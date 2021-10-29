@@ -22,14 +22,32 @@ const providers = {
 
 
 class App extends React.Component {
-
   render(){
-    console.log(this.props)
+    const {
+      user,
+      signOut,
+      signInWithGoogle,
+    } = this.props;
+
     return (
       <div className="App">
+
         <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/login" component={Login}/>
+          <Route
+            exact
+            path='/'
+            render={(props) => (
+              <Home { ...props } signOut={signOut} user={user}/>
+            )}
+          />
+
+          <Route
+            path='/login'
+            render={(props) => (
+              <Login { ...props } signInWithGoogle={signInWithGoogle}/>
+            )}
+          />
+
           <Route path="/category/:categoryName" component={Category}/>
           <Route path="*" component={Page404}/>
         </Switch>
