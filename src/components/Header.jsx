@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux'
+
 import Logo from './../assets/images/logo.png'
 import { ReactComponent as ShoppingCart } from './../assets/icons/shopping-cart.svg'
 
 import './Header.css'
 
 function Header(props) {
-  const { signOut, user } = props;
-  console.log(props)
+  const { signOut, user, productsNumberCart } = props;
+  console.log(productsNumberCart)
   return (
     <div className="d-flex justify-content-between align-items-center">
       <Link to="/">
@@ -26,7 +28,7 @@ function Header(props) {
         }
 
         <Link to='/shoppingcart'>
-          <ShoppingCart className="ml-2"/>
+          <ShoppingCart className="ml-2"/>{ productsNumberCart }
         </Link>
       </div>
       
@@ -34,4 +36,10 @@ function Header(props) {
   )
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return {
+    productsNumberCart: state.products.length
+  }
+}
+
+export default connect(mapStateToProps)(Header);
