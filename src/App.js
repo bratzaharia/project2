@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Page404 from './pages/Page404'
 import Category from './pages/Category'
+import Cart from './pages/Cart'
 import './App.css';
 
 // firebase
@@ -49,6 +50,7 @@ class App extends React.Component {
           />
 
           <Route path="/category/:categoryName" component={Category}/>
+          <Route path="/cart" component={Cart}/>
           <Route path="*" component={Page404}/>
         </Switch>
       </div>
