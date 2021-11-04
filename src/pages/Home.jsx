@@ -27,12 +27,8 @@ class Home extends React.Component {
 
   render() {
     console.log(this.props)
-    const { signOut, user } = this.props;
     return (
-      <Layout
-        signOut={signOut}
-        user={user}
-      >
+      <Layout>
         <h1 className="h1 text-center text-primary w-50 py-5">
           Home
       </h1>

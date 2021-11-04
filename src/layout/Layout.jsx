@@ -2,16 +2,12 @@ import Header from './../components/Header'
 import Footer from './../components/Footer'
 
 function Layout(props) {
-  console.log(props)
-  const { signOut, user } = props;
+  // console.log(props)
   return(
     <div>
-      <Header
-        signOut={signOut}
-        user={user}
-      />
+      <Header/>
         { props.children }
-      <Footer />
+      <Footer/>
     </div>
   )
 }

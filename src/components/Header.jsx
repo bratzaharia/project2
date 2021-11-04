@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
 
+import { signOut } from '../apis/firebase'
 import Logo from './../assets/images/logo.png'
 import { ReactComponent as ShoppingCart } from './../assets/icons/shopping-cart.svg'
 
-import './Header.css'
+import './Header.css';
+
+const user = {}
 
 function Header(props) {
-  const { signOut, user, productsNumberCart } = props;
+  const { productsNumberCart } = props;
   console.log(productsNumberCart)
   return (
     <div className="d-flex justify-content-between align-items-center">

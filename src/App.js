@@ -9,17 +9,15 @@ import Cart from './pages/Cart'
 import './App.css';
 
 // firebase
-import withFirebaseAuth from 'react-with-firebase-auth'
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import firebaseConfig from './configs/firebase';
-
-
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const firebaseAppAuth = firebaseApp.auth();
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
+// import withFirebaseAuth from 'react-with-firebase-auth'
+// import * as firebase from 'firebase/app';
+// import 'firebase/auth';
+// import firebaseConfig from './configs/firebase';
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
+// const firebaseAppAuth = firebaseApp.auth();
+// const providers = {
+//   googleProvider: new firebase.auth.GoogleAuthProvider(),
+// };
 
 
 class App extends React.Component {
@@ -27,7 +25,6 @@ class App extends React.Component {
     const {
       user,
       signOut,
-      signInWithGoogle,
     } = this.props;
 
     return (
@@ -42,14 +39,9 @@ class App extends React.Component {
             )}
           />
 
-          <Route
-            path='/login'
-            render={(props) => (
-              <Login { ...props } signInWithGoogle={signInWithGoogle}/>
-            )}
-          />
-
+          <Route path="/login" component={Login}/>
           <Route path="/category/:categoryName" component={Category}/>
+
           <Route path="/cart" component={Cart}/>
           <Route path="*" component={Page404}/>
         </Switch>
@@ -58,7 +50,4 @@ class App extends React.Component {
   }
 }
 
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth,
-})(App);
+export default App;
