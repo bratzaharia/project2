@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { signInWithGoogle } from '../apis/firebase'
+
+import { loginUser } from '../redux/actions/user'
 
 import Logo from '../assets/images/logo.png';
 import { ReactComponent as Google } from '../assets/icons/google.svg';
@@ -8,35 +10,55 @@ import './Login.css'
 
 
 
-function Login(props) {
-    const {history} = props;
+class Login extends React.Component {
 
-    function handleGoogleLogin() {
-        const googleLoginRespone = signInWithGoogle();
-        googleLoginRespone.then((response) => {
-            console.log(response)
-            history.push('/');
-        });
+    componentDidUpdate(prevProps) {
+        if(this.props.userData !== prevProps.userData) {
+            this.props.history.push('/')
+        }
     }
 
-    return(
-        <div className="login-page">
-            <Link to='/'>
-                <img src={Logo} alt="logo" className="mb-5"/>
-            </Link>
 
-            <h1 className="h2">Login</h1>
-            <p>Alege providerul cu care vrei să vrei să te loghezi:</p>
+    render() {
+        const { loginUser, userData, loading } = this.props;
 
-            <button
-                className="btn btn-outline-dark d-flex align-items-center"
-                onClick={() => handleGoogleLogin()}
-            >
-                <Google className="w-50 mr-3"/>
-                <span className="text-nowrap">Loghează-te cu Google</span>
-            </button>
-        </div>
-    );
+        // console.log(loading, userData)
+
+        return (
+            <div className="login-page">
+                <Link to='/'>
+                    <img src={Logo} alt="logo" className="mb-5" />
+                </Link>
+
+                <h1 className="h2">Login</h1>
+                <p>Alege providerul cu care vrei să vrei să te loghezi:</p>
+
+                <button
+                    className="btn btn-outline-dark d-flex align-items-center"
+                    onClick={() => loginUser()}
+                >
+                    <Google className="w-50 mr-3" />
+                    <span className="text-nowrap">Loghează-te cu Google</span>
+                </button>
+            </div>
+        );
+
+    }
+
+    // componentDidUpdate se apeleaza ca se modifica propurile
 }
 
-export default Login;
+function mapStateToProps(state) {
+    return {
+        loading: state.user.loading,
+        userData: state.user.data
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        loginUser: () => { dispatch(loginUser()) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

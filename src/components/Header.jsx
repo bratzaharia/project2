@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
+import { logoutUser } from '../redux/actions/user'
 
-import { signOut } from '../apis/firebase'
 import Logo from './../assets/images/logo.png'
 import { ReactComponent as ShoppingCart } from './../assets/icons/shopping-cart.svg'
 
 import './Header.css';
 
-const user = {}
 
 function Header(props) {
-  const { productsNumberCart } = props;
+  const { productsNumberCart, user, logout } = props;
   console.log(productsNumberCart)
   return (
     <div className="d-flex justify-content-between align-items-center">
@@ -23,7 +22,7 @@ function Header(props) {
           user 
             ? <>
                 <p>{user.displayName}</p>
-                <button onClick={signOut} className="btn btn-outline-primary">Sign out</button>
+                <button onClick={logout} className="btn btn-outline-primary">Sign out</button>
               </>
             : <Link to="/login">
                 <button type="button" className="btn btn-outline-primary">Login</button>
@@ -41,8 +40,16 @@ function Header(props) {
 
 function mapStateToProps(state) {
   return {
-    productsNumberCart: state.products.length
+    productsNumberCart: state.cart.products.length,
+    user: state.user.data
   }
 }
 
-export default connect(mapStateToProps)(Header);
+function mapDispatchToProps(dispatch) {
+  return {
+    logout: () => dispatch(logoutUser())
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
