@@ -6,7 +6,7 @@ import Layout from '../layout/Layout'
 function Cart(props) {
 
   const {cartProducts} = props;
-  console.log(cartProducts)
+  console.log(props)
   return(
     <Layout>
       <div className="container-fluid container-min-max-width">

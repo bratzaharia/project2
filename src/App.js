@@ -5,19 +5,9 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Page404 from './pages/Page404'
 import Category from './pages/Category'
+import Product from './pages/Product'
 import Cart from './pages/Cart'
 import './App.css';
-
-// firebase
-// import withFirebaseAuth from 'react-with-firebase-auth'
-// import * as firebase from 'firebase/app';
-// import 'firebase/auth';
-// import firebaseConfig from './configs/firebase';
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
-// const firebaseAppAuth = firebaseApp.auth();
-// const providers = {
-//   googleProvider: new firebase.auth.GoogleAuthProvider(),
-// };
 
 
 class App extends React.Component {
@@ -41,6 +31,7 @@ class App extends React.Component {
 
           <Route path="/login" component={Login}/>
           <Route path="/category/:categoryName" component={Category}/>
+          <Route path="/product/:productId" component={Product}/>
 
           <Route path="/cart" component={Cart}/>
           <Route path="*" component={Page404}/>
