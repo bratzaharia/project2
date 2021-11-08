@@ -5,7 +5,7 @@ function HomeCategory(props) {
   const { image, title, description, routeName } = props;
   console.log(routeName)
   return (
-    <div className="col-sm-6 col-xs-6 border mb-2 p-3">
+    <div className="col-12 col-sm-6 col-md-4 col-lg-3 border p-3">
       <Link to={`/category/${routeName}`}>
       <img
         className="w-100"
