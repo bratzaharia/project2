@@ -30,6 +30,7 @@ class ProductListSidebar extends React.Component{
 
     handleCheckboxUiChange(name) {
         const filters = this.state.filters;
+        
         const modifiedFilters = filters.map(filter => {
             if (filter.name !== name && filter.checked) {
                 return {
@@ -52,6 +53,7 @@ class ProductListSidebar extends React.Component{
                 return filter;
             }
         });
+
         this.setState({filters: modifiedFilters});
     }
 
